@@ -1,6 +1,6 @@
 package usoTP1;
 
-import implementacion.ColaPrioridad;
+import implementacionDinamica.ColaPrioridad;
 import tdas.ColaPrioridadTDA;
 
 

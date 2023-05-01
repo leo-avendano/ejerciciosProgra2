@@ -1,10 +1,10 @@
 package usoTP2;
 
-import tda.ConjuntoTDA;
+import tdas.ConjuntoTDA;
 
 public class TP2_EJClase_0404_ConjuntoPertenece {
 
-	public boolean incluye(ConjuntoTDA conj1, ConjuntoTDA conj2) {
+	public boolean incluye(ConjuntoTDA<Integer> conj1, ConjuntoTDA<Integer> conj2) {
 		int aux;
 		boolean incluye = true;
 		while (!conj2.conjuntoVacio() && incluye) {

@@ -4,7 +4,7 @@ import java.util.Random;
 
 import tdas.ConjuntoTDA;
 
-public class ConjuntoValorAcotado implements ConjuntoTDA {
+public class ConjuntoValorAcotado implements ConjuntoTDA<Integer> {
 	
 	int[] valores;
 	int indice;
@@ -19,13 +19,13 @@ public class ConjuntoValorAcotado implements ConjuntoTDA {
 		this.indice = 0;
 	}
 
-	public void agregar(int x) {
+	public void agregar(Integer x) {
 		if (this.buscarValor(x) == -1 && this.maxValor >= x && x >= 0) {
 			this.valores[indice] = x;
 		}
 	}
 
-	public void sacar(int x) {
+	public void sacar(Integer x) {
 		int indiceSacar = this.buscarValor(x);
 		if (indiceSacar > -1) {
 			this.valores[indiceSacar] = this.valores[indice - 1];
@@ -33,13 +33,13 @@ public class ConjuntoValorAcotado implements ConjuntoTDA {
 		}
 	}
 
-	public int elegir() {
+	public Integer elegir() {
 		Random random = new Random();
 		int x = random.nextInt(this.indice);
 		return this.valores[x];
 	}
 
-	public boolean pertenece(int x) {
+	public boolean pertenece(Integer x) {
 		boolean pertenece = false;
 		int indiceBuscado = buscarValor(x);
 		if (indiceBuscado > -1) 
@@ -51,7 +51,7 @@ public class ConjuntoValorAcotado implements ConjuntoTDA {
 		return indice == 0;
 	}
 	
-	private int buscarValor(int valor) {
+	private int buscarValor(Integer valor) {
 		boolean existe = false;
 		int i = 0;
 		while (i < indice && !existe) {

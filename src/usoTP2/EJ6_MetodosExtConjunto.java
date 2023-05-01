@@ -5,8 +5,8 @@ import implementacion.ConjuntoMaximo;
 
 
 public class EJ6_MetodosExtConjunto {
-	static public ConjuntoTDA interseccion(ConjuntoTDA conjA, ConjuntoTDA conjB) {
-		ConjuntoTDA resultado = new ConjuntoMaximo(20);
+	static public ConjuntoTDA<Integer> interseccion(ConjuntoTDA<Integer> conjA, ConjuntoTDA<Integer> conjB) {
+		ConjuntoTDA<Integer> resultado = new ConjuntoMaximo(20);
 		while (!conjA.conjuntoVacio()) {
 			int valor = conjA.elegir();
 			conjA.sacar(valor);
@@ -17,8 +17,8 @@ public class EJ6_MetodosExtConjunto {
 		return resultado;
 	}
 	
-	static public ConjuntoTDA union(ConjuntoTDA conjA, ConjuntoTDA conjB) {
-		ConjuntoTDA resultado = new ConjuntoMaximo(20);
+	static public ConjuntoTDA<Integer> union(ConjuntoTDA<Integer> conjA, ConjuntoTDA<Integer> conjB) {
+		ConjuntoTDA<Integer> resultado = new ConjuntoMaximo(20);
 		while (!conjA.conjuntoVacio()) {
 			int valor = conjA.elegir();
 			conjA.sacar(valor);
@@ -32,8 +32,8 @@ public class EJ6_MetodosExtConjunto {
 		return resultado;
 	}
 	
-	static public ConjuntoTDA diferencia(ConjuntoTDA conjA, ConjuntoTDA conjB) {
-		ConjuntoTDA resultado = new ConjuntoMaximo(20);
+	static public ConjuntoTDA<Integer> diferencia(ConjuntoTDA<Integer> conjA, ConjuntoTDA<Integer> conjB) {
+		ConjuntoTDA<Integer> resultado = new ConjuntoMaximo(20);
 		while (!conjA.conjuntoVacio()) {
 			int valor = conjA.elegir();
 			conjA.sacar(valor);
@@ -46,19 +46,19 @@ public class EJ6_MetodosExtConjunto {
 	
 	public static void main(String[] args) {
 	
-		ConjuntoTDA conjA = new ConjuntoMaximo(10);
+		ConjuntoTDA<Integer> conjA = new ConjuntoMaximo(10);
 		conjA.inicializarConjunto();
 		conjA.agregar(1);
 		conjA.agregar(2);
 		conjA.agregar(3);
 		
-		ConjuntoTDA conjB = new ConjuntoMaximo(10);
+		ConjuntoTDA<Integer> conjB = new ConjuntoMaximo(10);
 		conjB.inicializarConjunto();
 		conjB.agregar(3);
 		conjB.agregar(4);
 		conjB.agregar(5);
 		
-		ConjuntoTDA resultado1 = interseccion(conjA, conjB);
+		ConjuntoTDA<Integer> resultado1 = interseccion(conjA, conjB);
 		// Deberia imprimir (3)
 		System.out.println("Resultado 1: ");
 		while(!resultado1.conjuntoVacio()) {
@@ -67,7 +67,7 @@ public class EJ6_MetodosExtConjunto {
 			resultado1.sacar(valor);
 		}
 		
-		ConjuntoTDA resultado2 = union(conjA, conjB);
+		ConjuntoTDA<Integer> resultado2 = union(conjA, conjB);
 		// Deberia imprimir (1, 2, 3, 4, 5)
 		System.out.println("Resultado 2: ");
 		while(!resultado2.conjuntoVacio()) {
@@ -76,7 +76,7 @@ public class EJ6_MetodosExtConjunto {
 			resultado2.sacar(valor);
 		}
 		
-		ConjuntoTDA resultado3 = diferencia(conjA, conjB);
+		ConjuntoTDA<Integer> resultado3 = diferencia(conjA, conjB);
 		// Deberia imprimir (1, 2)
 		System.out.println("Resultado 3: ");
 		while(!resultado3.conjuntoVacio()) {

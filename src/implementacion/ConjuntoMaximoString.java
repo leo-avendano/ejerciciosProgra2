@@ -3,28 +3,28 @@ package implementacion;
 import java.util.Random;
 import tdas.ConjuntoTDA;
 
-public class ConjuntoMaximo implements ConjuntoTDA<Integer> {
+public class ConjuntoMaximoString implements ConjuntoTDA<String> {
 	
-	int[] valores;
+	String[] valores;
 	int indice;
 	int tamaño;
 	
-	public ConjuntoMaximo(int tamaño) {
+	public ConjuntoMaximoString(int tamaño) {
 		this.tamaño = tamaño;
 	}
-
+	
 	public void inicializarConjunto() {
-		this.valores = new int[this.tamaño];
+		this.valores = new String[this.tamaño];
 		this.indice = 0;
 	}
 
-	public void agregar(Integer x) {
+	public void agregar(String x) {
 		if (this.buscarValor(x) == -1) {
 			this.valores[indice] = x;
 		}
 	}
 
-	public void sacar(Integer x) {
+	public void sacar(String x) {
 		int indiceSacar = this.buscarValor(x);
 		if (indiceSacar > -1) {
 			this.valores[indiceSacar] = this.valores[indice - 1];
@@ -32,13 +32,13 @@ public class ConjuntoMaximo implements ConjuntoTDA<Integer> {
 		}
 	}
 
-	public Integer elegir() {
+	public String elegir() {
 		Random random = new Random();
 		int x = random.nextInt(this.indice);
 		return this.valores[x];
 	}
 
-	public boolean pertenece(Integer x) {
+	public boolean pertenece(String x) {
 		boolean pertenece = false;
 		int indiceBuscado = buscarValor(x);
 		if (indiceBuscado > -1) 
@@ -50,7 +50,7 @@ public class ConjuntoMaximo implements ConjuntoTDA<Integer> {
 		return indice == 0;
 	}
 	
-	private int buscarValor(Integer valor) {
+	private int buscarValor(String valor) {
 		boolean existe = false;
 		int i = 0;
 		while (i < indice && !existe) {
@@ -64,4 +64,5 @@ public class ConjuntoMaximo implements ConjuntoTDA<Integer> {
 		}
 		return i;		
 	}
+
 }

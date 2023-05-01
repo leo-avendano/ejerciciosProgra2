@@ -5,40 +5,69 @@ import tdas.DiccionarioMultipleTDA;
 
 public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 
-	@Override
+	ElementoKeyConjunto[] conjuntos;
+	int indice;
+	int tamaño = 10;
+	
 	public void inicializarDiccionario() {
-		// TODO Auto-generated method stub
-
+		this.conjuntos = new ElementoKeyConjunto[tamaño];
+		this.indice = 0;
 	}
 
-	@Override
 	public void agregar(int clave, int valor) {
-		// TODO Auto-generated method stub
-
+		int i = this.clave2Indice(clave);
+		if (i != -1) {
+			this.conjuntos[i].valores.agregar(valor);
+		} else {
+			this.conjuntos[indice].setKey(clave);
+			this.conjuntos[indice].valores.agregar(valor);
+			this.indice++;
+		}
 	}
 
-	@Override
 	public void eliminar(int clave) {
-		// TODO Auto-generated method stub
-
+		int i = this.clave2Indice(clave);
+		if (i != -1) {
+			this.conjuntos[i] = this.conjuntos[indice - 1];
+			this.indice--;
+		}
 	}
 
-	@Override
 	public void eliminarValor(int clave, int valor) {
-		// TODO Auto-generated method stub
-
+		int i = this.clave2Indice(clave);
+		if (i != -1) {
+			this.conjuntos[i].valores.sacar(valor);
+			if (this.conjuntos[i].valores.conjuntoVacio()) {
+				this.conjuntos[i] = this.conjuntos[indice - 1];
+				this.indice--;
+			}
+		}
 	}
 
-	@Override
-	public ConjuntoTDA recuperar(int clave) {
-		// TODO Auto-generated method stub
-		return null;
+	public ConjuntoTDA<Integer> recuperar(int clave) {
+		int i = this.clave2Indice(clave);
+		return this.conjuntos[i].valores;
 	}
 
-	@Override
-	public ConjuntoTDA claves() {
-		// TODO Auto-generated method stub
-		return null;
+	public ConjuntoTDA<Integer> claves() {
+		ConjuntoTDA<Integer> claves = new ConjuntoMaximo(tamaño);
+		claves.inicializarConjunto();
+		for (int i = 0; i < indice; i++) {
+			claves.agregar(this.conjuntos[i].getKey());
+		}
+		return claves;
 	}
-
+	
+	private int clave2Indice(int clave) {
+		int i = 0;
+		boolean claveExiste = false;
+		while (i < indice && !claveExiste) {
+			if (this.conjuntos[i].getKey() == clave) {
+				claveExiste = true;
+			}
+			i++;
+		}
+		if (!claveExiste) i = -1;
+		return i;
+	}
 }

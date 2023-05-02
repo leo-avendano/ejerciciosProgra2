@@ -12,9 +12,42 @@ public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 	}
 
 	public void agregar(int clave, int valor) {
+		boolean existeClave = false;
+		NodoConjuntoClave actual = this.origen;
+		if (actual != null) {		
+			while (actual.sig != null && existeClave == false) {
+				if (actual.clave == clave) {
+					actual.valores.agregar(valor);
+					existeClave = true;
+				}
+				actual = actual.sig;
+			}
+		}
+		if (this.origen == null || existeClave == false) {
+			NodoConjuntoClave nuevoNodo = new NodoConjuntoClave(clave, valor);
+			nuevoNodo.sig = this.origen;
+			this.origen = nuevoNodo;
+		}
 	}
 
 	public void eliminar(int clave) {
+		boolean eliminado = false;
+		NodoConjuntoClave anterior = null;
+		NodoConjuntoClave actual = this.origen;
+		if (actual != null) {		
+			while (actual.sig != null && eliminado == false) {
+				if (actual.clave == clave) {
+					if (anterior != null) {
+						anterior.sig = actual.sig;
+					} else {
+						this.origen = null;
+					}
+					eliminado = true;
+				}
+				anterior = actual;
+				actual = actual.sig;
+			}
+		} 
 	}
 
 	public ConjuntoTDA<Integer> recuperar(int clave) {
@@ -37,5 +70,19 @@ public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 			actual = actual.sig;
 		}
 		return claves;
+	}
+
+	public void eliminarValor(int clave, int valor) {
+		boolean eliminado = false;
+		NodoConjuntoClave actual = this.origen;
+		if (actual != null) {		
+			while (actual.sig != null && eliminado == false) {
+				if (actual.clave == clave) {
+					actual.valores.sacar(valor);
+					eliminado = true;
+				}
+				actual = actual.sig;
+			}
+		} 
 	}
 }

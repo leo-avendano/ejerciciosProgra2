@@ -35,4 +35,11 @@ public class NodoPrioridad {
 	public void anexar(NodoPrioridad n) {
 		this.siguiente = n;
 	}
+	
+	public void print() {
+		System.out.print("prio: ");
+		System.out.print(this.getPrioridad());
+		System.out.print(", info: ");
+		System.out.println(this.getInfo());
+	}
 }

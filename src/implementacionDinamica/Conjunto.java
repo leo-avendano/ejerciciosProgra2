@@ -1,6 +1,8 @@
 package implementacionDinamica;
 
 import java.util.Random;
+import java.util.ArrayList;
+
 
 import tdas.ConjuntoTDA;
 
@@ -23,33 +25,37 @@ public class Conjunto implements ConjuntoTDA<Integer> {
 	}
 
 	public void sacar(Integer x) {
-		int idxSacar = indiceValor(x);
-		if (idxSacar > 1) {
-			int idxAnterior = 0;
-			Nodo anteriorAlSacar = this.origen;
-			while (idxAnterior < idxSacar - 1) {
-				anteriorAlSacar = anteriorAlSacar.getSiguiente();
-				idxAnterior++;
+		if (this.origen != null) {
+			int idxSacar = indiceValor(x);
+			if (idxSacar > 0) {
+				int i = 0;
+				Nodo actual = this.origen;
+				while (i < idxSacar - 1) {
+					actual = actual.getSiguiente();
+					i++;
+				}
+				actual.anexar(actual.getSiguiente().getSiguiente());
+			} else if (idxSacar == 0) {
+				this.origen = this.origen.getSiguiente();
 			}
-			Nodo sigAlSacar = anteriorAlSacar.getSiguiente().getSiguiente();
-			anteriorAlSacar.anexar(sigAlSacar);
-		} else if (idxSacar == 1) {
-			this.origen.anexar(null);
-		} else if (idxSacar == 0) {
-			this.origen = null;
+			this.indice--;
 		}
 	}
 
 	public Integer elegir() {
-		Random random = new Random();
-		int x = random.nextInt(this.indice);
-		int i = 0;
-		Nodo actual = this.origen;
-		while (i < x) {
-			actual = actual.getSiguiente();
-			i++;
+		Integer resultado = null;
+		if (this.indice > 0) {			
+			Random random = new Random();
+			int x = random.nextInt(this.indice);
+			int i = 0;
+			Nodo actual = this.origen;
+			while (i < x) {
+				actual = actual.getSiguiente();
+				i++;
+			}
+			resultado = actual.getInfo();
 		}
-		return actual.getInfo();
+		return resultado;
 	}
 
 	public boolean pertenece(Integer x) {
@@ -76,4 +82,18 @@ public class Conjunto implements ConjuntoTDA<Integer> {
 		return resultado;
 	}
 	
+	
+	public void print() {
+		Nodo actual = this.origen;
+		if (actual != null) {
+			ArrayList<Integer> valores = new ArrayList<Integer>();
+			while (actual != null) {
+				valores.add(actual.getInfo());
+				actual = actual.getSiguiente();
+			}
+			System.out.println(valores.toString());
+		} else {
+			System.out.println("[]");
+		}
+	}
 }

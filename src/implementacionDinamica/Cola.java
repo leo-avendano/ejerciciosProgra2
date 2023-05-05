@@ -1,5 +1,7 @@
 package implementacionDinamica;
 
+import java.util.ArrayList;
+
 import tdas.ColaTDA;
 
 public class Cola implements ColaTDA {
@@ -35,5 +37,19 @@ public class Cola implements ColaTDA {
 
 	public boolean colaVacia() {
 		return this.origen == null;
+	}
+	
+	public void print() {
+		Nodo actual = this.origen;
+		if (actual != null) {
+			ArrayList<Integer> valores = new ArrayList<Integer>();
+			while (actual != null) {
+				valores.add(actual.getInfo());
+				actual = actual.getSiguiente();
+			}
+			System.out.println(valores.toString());
+		} else {
+			System.out.println("[]");
+		}
 	}
 }

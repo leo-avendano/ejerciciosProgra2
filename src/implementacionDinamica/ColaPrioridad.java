@@ -50,4 +50,18 @@ public class ColaPrioridad implements ColaPrioridadTDA {
 		return this.origen == null;
 	}
 
+	public void print() {
+		NodoPrioridad actual = this.origen;
+		if (actual != null) {
+			System.out.println("[");
+			while (actual != null) {
+				System.out.print("\t");
+				actual.print();
+				actual = actual.getSiguiente();
+			}
+			System.out.println("]");
+		} else {
+			System.out.println("[]");
+		}
+	}
 }

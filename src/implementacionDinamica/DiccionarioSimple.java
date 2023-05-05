@@ -70,4 +70,19 @@ public class DiccionarioSimple implements DiccionarioSimpleTDA {
 		}
 		return claves;
 	}
+	
+	public void print() {
+		NodoValorClave actual = this.origen;
+		if (actual != null) {
+			System.out.println("{");
+			while (actual != null) {
+				System.out.print("\t");
+				actual.print();
+				actual = actual.sig;
+			}
+			System.out.println("}");
+		} else {
+			System.out.println("{}");
+		}
+	}
 }

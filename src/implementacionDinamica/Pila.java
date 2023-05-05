@@ -1,5 +1,7 @@
 package implementacionDinamica;
 
+import java.util.ArrayList;
+
 import tdas.PilaTDA;
 
 public class Pila implements PilaTDA {
@@ -28,5 +30,19 @@ public class Pila implements PilaTDA {
 
 	public boolean pilaVacia() {
 		return this.tope == null;
+	}
+	
+	public void print() {
+		Nodo actual = this.tope;
+		if (actual != null) {
+			ArrayList<Integer> valores = new ArrayList<Integer>();
+			while (actual != null) {
+				valores.add(actual.getInfo());
+				actual = actual.getSiguiente();
+			}
+			System.out.println(valores.toString());
+		} else {
+			System.out.println("[]");
+		}
 	}
 }

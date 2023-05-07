@@ -1,6 +1,5 @@
 package implementacionDinamica;
 
-import tdas.ConjuntoTDA;
 import tdas.DiccionarioSimpleTDA;
 
 public class DiccionarioSimple implements DiccionarioSimpleTDA {
@@ -53,7 +52,7 @@ public class DiccionarioSimple implements DiccionarioSimpleTDA {
 		Integer result = null;
 		NodoValorClave actual = this.origen;
 		if (actual != null) {			
-			while (actual.sig != null && result == null) {
+			while (actual != null && result == null) {
 				if (actual.clave == clave) result = actual.valor;
 				actual = actual.sig;
 			}
@@ -61,10 +60,10 @@ public class DiccionarioSimple implements DiccionarioSimpleTDA {
 		return result;
 	}
 
-	public ConjuntoTDA<Integer> claves() {
+	public Conjunto claves() {
 		Conjunto claves = new Conjunto();
 		NodoValorClave actual = this.origen;
-		while (actual.sig != null) {
+		while (actual != null) {
 			claves.agregar(actual.clave);
 			actual = actual.sig;
 		}

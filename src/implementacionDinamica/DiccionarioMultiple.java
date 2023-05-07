@@ -1,7 +1,7 @@
 package implementacionDinamica;
 
-import tdas.ConjuntoTDA;
 import tdas.DiccionarioMultipleTDA;
+
 
 public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 
@@ -15,7 +15,7 @@ public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 		boolean existeClave = false;
 		NodoConjuntoClave actual = this.origen;
 		if (actual != null) {		
-			while (actual.sig != null && existeClave == false) {
+			while (actual != null && existeClave == false) {
 				if (actual.clave == clave) {
 					actual.valores.agregar(valor);
 					existeClave = true;
@@ -50,8 +50,8 @@ public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 		} 
 	}
 
-	public ConjuntoTDA<Integer> recuperar(int clave) {
-		ConjuntoTDA<Integer> result = null;
+	public Conjunto recuperar(int clave) {
+		Conjunto result = null;
 		NodoConjuntoClave actual = this.origen;
 		if (actual != null) {			
 			while (actual.sig != null && result == null) {
@@ -62,7 +62,7 @@ public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 		return result;
 	}
 
-	public ConjuntoTDA<Integer> claves() {
+	public Conjunto claves() {
 		Conjunto claves = new Conjunto();
 		NodoConjuntoClave actual = this.origen;
 		while (actual.sig != null) {

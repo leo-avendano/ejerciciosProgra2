@@ -24,17 +24,123 @@ public class EJ3_Conjunto {
 		EJ3_Conjunto.E();
 	}
 	
-	public static void A1() {}
-	
-	public static void A2() {}
-	
-	public static void B() {}
-	
-	public static void C() {}
-	
-	public static void D() {}
-	
-	public static void E() {}
+	public static void A1() {
+        Conjunto conjuntoA = new Conjunto();
+        Conjunto conjuntoB = new Conjunto();
+
+        conjuntoA.inicializarConjunto();
+        conjuntoB.inicializarConjunto();
+
+        conjuntoA.agregar(1);
+        conjuntoA.agregar(2);
+        conjuntoA.agregar(3);
+        conjuntoB.agregar(2);
+        conjuntoB.agregar(3);
+        conjuntoB.agregar(4);
+
+        Conjunto resultado = diferenciaSimetrica(conjuntoA, conjuntoB);
+
+        System.out.println("Diferencia simétrica sin operaciones union, intersección y diferencia:");
+        resultado.print();
+    }
+
+    public static void A2() {
+        Conjunto conjuntoA = new Conjunto();
+        Conjunto conjuntoB = new Conjunto();
+
+        conjuntoA.inicializarConjunto();
+        conjuntoB.inicializarConjunto();
+
+        conjuntoA.agregar(1);
+        conjuntoA.agregar(2);
+        conjuntoA.agregar(3);
+        conjuntoB.agregar(2);
+        conjuntoB.agregar(3);
+        conjuntoB.agregar(4);
+
+        Conjunto resultado = diferenciaSimetricaPuro(conjuntoA, conjuntoB);
+
+        System.out.println("Diferencia simétrica utilizando operaciones union, intersección y diferencia:");
+        resultado.print();
+    }
+
+    public static void B() {
+        Conjunto conjuntoA = new Conjunto();
+        Conjunto conjuntoB = new Conjunto();
+
+        conjuntoA.inicializarConjunto();
+        conjuntoB.inicializarConjunto();
+
+        conjuntoA.agregar(1);
+        conjuntoA.agregar(2);
+        conjuntoA.agregar(3);
+        conjuntoB.agregar(2);
+        conjuntoB.agregar(3);
+        conjuntoB.agregar(4);
+
+        boolean sonIguales = sonIgualesV1(conjuntoA, conjuntoB);
+        //boolean sonIguales = sonIgualesV2(conjuntoA, conjuntoB);
+
+        System.out.println("Los conjuntos son iguales: " + sonIguales);
+    }
+
+    public static void C() {
+        Conjunto conjunto = new Conjunto();
+
+        conjunto.inicializarConjunto();
+        conjunto.agregar(1);
+        conjunto.agregar(2);
+        conjunto.agregar(3);
+        conjunto.agregar(4);
+        conjunto.agregar(5);
+
+        int cardinalidad = cardinalidad(conjunto);
+
+        System.out.println("La cardinalidad del conjunto es: " + cardinalidad);
+    }
+
+    public static void D() {
+        Pila pila = new Pila();
+        Cola cola = new Cola();
+
+        pila.inicializarPila();
+        cola.inicializarCola();
+
+        pila.apilar(1);
+        pila.apilar(2);
+        pila.apilar(3);
+        
+        cola.acolar(2);
+        cola.acolar(3);
+        cola.acolar(4);
+
+        Conjunto conjunto = interseccionPilaCola(pila, cola);
+        System.out.println("La interseccion entre una pila y cola es: ");
+        conjunto.print();
+     }
+    
+    public static void E() {
+        Pila pila = new Pila();
+        Cola cola = new Cola();
+        pila.inicializarPila();
+        cola.inicializarCola();
+
+        pila.apilar(2);
+        pila.apilar(5);
+        pila.apilar(3);
+        pila.apilar(9);
+        pila.apilar(7);
+
+        cola.acolar(2);
+        cola.acolar(5);
+        cola.acolar(3);
+        cola.acolar(9);
+        cola.acolar(7);
+
+        boolean iguales = esColaIgualPila(cola, pila);
+
+        System.out.println("¿La cola y la pila tienen los mismos elementos? " + iguales);
+    }
 	
 	static public Conjunto interseccion(Conjunto c1, Conjunto c2) {
 		Conjunto conjA = clonar(c1);

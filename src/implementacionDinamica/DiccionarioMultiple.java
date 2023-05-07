@@ -65,7 +65,7 @@ public class DiccionarioMultiple implements DiccionarioMultipleTDA {
 	public Conjunto claves() {
 		Conjunto claves = new Conjunto();
 		NodoConjuntoClave actual = this.origen;
-		while (actual.sig != null) {
+		while (actual != null) {
 			claves.agregar(actual.clave);
 			actual = actual.sig;
 		}

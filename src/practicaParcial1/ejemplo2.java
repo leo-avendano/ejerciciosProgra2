@@ -1,9 +1,40 @@
-package implementacionDinamica;
-
+package practicaParcial1;
 import tdas.ColaPrioridadTDA;
+import implementacionDinamica.NodoPrioridad;
 
-public class ColaPrioridad implements ColaPrioridadTDA {
+
+public class ejemplo2 {
+	
+	/*
+	 * Modificar la implementacion de Cola con prioridad, agregando el metodo interno sumarPrioridades().
+	 * El mismo debe devolver la suma de todas las prioridades que esten en la cola. Se pide entregar el 
+	 * nuevo metodo y nuevas variables si existiesen, y cualquier otro metodo que se vea modificado.
+	 */
+	
+	public static void main(String[] args) {
+		ColaPrioridad cola = new ColaPrioridad();
+	    cola.inicializarCola();
+	    cola.acolarPrioridad(2, 5);
+	    cola.acolarPrioridad(4, 2);
+	    cola.acolarPrioridad(6, 8);
+	    
+	    System.out.print("Suma de prioridades: ");
+	    System.out.println(cola.sumarPrioridades());
+	}
+}
+
+class ColaPrioridad implements ColaPrioridadTDA {
 	NodoPrioridad origen;
+	
+	public int sumarPrioridades() {
+		int result = 0;
+		NodoPrioridad actualNodo = this.origen;
+		while (actualNodo != null) {
+			result += actualNodo.getPrioridad();
+			actualNodo = actualNodo.getSiguiente();
+		}
+		return result;
+	}
 	
 	public void inicializarCola() {
 		this.origen = null;
